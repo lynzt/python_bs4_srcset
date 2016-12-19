@@ -9,10 +9,19 @@ class UtilsTests(unittest.TestCase):
         soup = BeautifulSoup(html, 'lxml')
         image_srcset = soup.find('img').get('srcset')
 
-        image_url = bs4_srcset.get_img_url_from_srcset(image_srcset, '1.5x')
+        image_url = bs4_srcset.get_img_url_from_srcset('', ['1.5x'])
+        self.assertEqual(image_url, None)
+
+        image_url = bs4_srcset.get_img_url_from_srcset(image_srcset, ['1.5x'])
         self.assertEqual(image_url, '//upload.wikimedia.org/wikipedia/commons/thumb/9/93/District-Massachusetts.png/225px-District-Massachusetts.png')
 
-        image_url = bs4_srcset.get_img_url_from_srcset(image_srcset, '2x')
+        image_url = bs4_srcset.get_img_url_from_srcset(image_srcset, ['2x'])
+        self.assertEqual(image_url, '//upload.wikimedia.org/wikipedia/commons/thumb/9/93/District-Massachusetts.png/300px-District-Massachusetts.png')
+
+        image_url = bs4_srcset.get_img_url_from_srcset(image_srcset, ['1x', '1.5x'])
+        self.assertEqual(image_url, '//upload.wikimedia.org/wikipedia/commons/thumb/9/93/District-Massachusetts.png/225px-District-Massachusetts.png')
+
+        image_url = bs4_srcset.get_img_url_from_srcset(image_srcset, ['2x', '1.5x'])
         self.assertEqual(image_url, '//upload.wikimedia.org/wikipedia/commons/thumb/9/93/District-Massachusetts.png/300px-District-Massachusetts.png')
 
 # python -m unittest discover -s tests -p "*_tests.py"
