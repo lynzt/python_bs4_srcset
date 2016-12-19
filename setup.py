@@ -6,6 +6,6 @@ setup(name='python_bs4_srcset',
     description='return an image_url of an image srcset',
     author='lynzt',
     url='https://github.com/lynzt/python_bs4_srcset',
-    packages=['bs4_srcsets'],
+    packages=['bs4_srcset'],
     install_requires=['bs4'],
     )
