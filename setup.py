@@ -6,5 +6,5 @@ setup(name='python_bs4_srcset',
     author='lynzt',
     url='https://github.com/lynzt/python_bs4_srcset',
     packages=['bs4_srcset'],
-    install_requires=['bs4'],
+    install_requires=['beautifulsoup4'],
     )
